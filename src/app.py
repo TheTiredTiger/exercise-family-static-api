@@ -15,15 +15,25 @@ CORS(app)
 # create the jackson family object
 jackson_family = FamilyStructure("Jackson")
 me = FamilyMember("Bárbara", 28, [8, 10])
-print(me)
+""" print(me) """
+
+someone = FamilyMember("Inês", 30, [1, 26])
+
 
 ferreira_family = FamilyStructure("Ferreira")
 
 ferreira_family.add_member(me)
-print(ferreira_family.last_name)
+ferreira_family.add_member(someone)
+""" print(ferreira_family.last_name) """
 
-for member in ferreira_family._members:
-    print(member.first_name)
+""" ferreira_family.delete_member(2) """
+
+ferreira_family.get_member(2)
+
+""" for member in ferreira_family._members:
+    print(member.id) """
+
+
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
