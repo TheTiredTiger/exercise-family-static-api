@@ -6,7 +6,6 @@ update this file to implement the following already declared methods:
 - update_member: Should update a member from the self._members list
 - get_member: Should return a member from the self._members list
 """
-from random import randint
 
 class FamilyStructure:
     def __init__(self, last_name):
@@ -24,31 +23,46 @@ class FamilyStructure:
 
     def add_member(self, member):
         # fill this method and update the return
-        member.last_name = self.last_name
-        member.id = self._generateId()
+        if not member.get("id"):
+            member["id"] = self._generateId()
         self._members.append(member)
 
     def delete_member(self, id):
         # fill this method and update the return
-        def func(x):
-            return x.id != id
-        
-        self._members = filter(func, self._members)
-        return self._members
+        print(id)
+        for member in self._members:
+            if member["id"] == id:
+                self._members.remove(member)
+                return True
+            
+        return False  
+    
+    def update_member(self, id, member):
+        print("Updated", id)
+        for family_member in self._members:
+            if family_member["id"] == id:
+                self._members.remove(family_member)
+                member["id"] = id
+                self._members.append(member)
+                return True
+            
+        return False
+
 
     def get_member(self, id):
         # fill this method and update the return
-        for member in self._members:
-            if member.id == id:
-                return member.first_name
-            else:
-                pass
+        for family_member in self._members:
+            if family_member["id"] == id:
+                print(family_member)
+                return family_member
+        
+        return False
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
 
-class FamilyMember:
+""" class FamilyMember:
     last_name = None
     id = None
     def __init__(self, first_name, age, lucky_numbers):
@@ -57,4 +71,4 @@ class FamilyMember:
         self.lucky_numbers = lucky_numbers
     
     def __str__(self):
-        return f"{self.first_name} {self.age} {self.last_name}"
+        return f"{self.first_name} {self.age} {self.last_name}" """
